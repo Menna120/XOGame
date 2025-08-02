@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">XOGame</string>
+    <string name="player_1_turn">Player 1\'s Turn</string>
+    <string name="player_1_wins">Player 1 Wins!</string>
+    <string name="play_again">Play Again</string>
+    <string name="tix_tac_toe">Tix-Tac-Toe</string>
+    <string name="pick_who_goes_first">Pick who goes first?</string>
+    <string name="player_o">Player O</string>
+    <string name="player_x">Player X</string>
+</resources>

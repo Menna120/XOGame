@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/timerTextView"
+            style="@style/ScoreTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_background_white"
+            android:gravity="center"
+            android:padding="10dp"
+            tools:text="01:15" />
+
+        <TextView
+            android:id="@+id/turnTextView"
+            style="@style/PlayProgressTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/player_1_turn" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/gameBoardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_background_white"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="16dp">
+
+            <!-- Horizontal Grid Lines -->
+            <View
+                android:id="@+id/horizontalLine1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/cell10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cell00" />
+
+            <View
+                android:id="@+id/horizontalLine2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/cell20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cell10" />
+
+            <!-- Vertical Grid Lines -->
+            <View
+                android:id="@+id/verticalLine1"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cell01"
+                app:layout_constraintStart_toEndOf="@+id/cell00"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/verticalLine2"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cell02"
+                app:layout_constraintStart_toEndOf="@+id/cell01"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!-- Cells -->
+            <ImageButton
+                android:id="@+id/cell00"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine1"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_x"/>
+
+            <ImageButton
+                android:id="@+id/cell01"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_o"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine1"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine2"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/cell02"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_x"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/cell10"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine2"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine1" />
+
+            <ImageButton
+                android:id="@+id/cell11"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_o"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine2"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine2"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine1"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine1" />
+
+            <ImageButton
+                android:id="@+id/cell12"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                tools:src="@drawable/ic_o"
+                app:layout_constraintBottom_toTopOf="@+id/horizontalLine2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine2"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine1" />
+
+            <ImageButton
+                android:id="@+id/cell20"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine2" />
+
+            <ImageButton
+                android:id="@+id/cell21"
+                style="@style/PlayButtonStyle"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/verticalLine2"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine1"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine2" />
+
+            <ImageButton
+                android:id="@+id/cell22"
+                style="@style/PlayButtonStyle"
+                tools:src="@drawable/ic_x"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/verticalLine2"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/winner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/scrim"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/winnerText"
+            style="@style/PlayProgressTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/player_1_wins"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/play_again_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_green"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/play_again"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>
