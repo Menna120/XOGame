@@ -6,52 +6,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.xo_game.databinding.FragmentGameBinding;
+
 public class GameFragment extends Fragment {
 
+    private FragmentGameBinding binding;
     private final int[][] boardState = new int[3][3];
     private boolean isPlayer1Turn = true;
     private int movesCount = 0;
     private boolean isPlayer1X;
-
-    private TextView timerTextView;
-    private TextView turnTextView;
     private final ImageButton[][] cells = new ImageButton[3][3];
-    private LinearLayout winnerLayout;
-    private TextView winnerText;
-
     private CountDownTimer countDownTimer;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_game, container, false);
+        binding = FragmentGameBinding.inflate(inflater, container, false);
 
         Bundle arguments = getArguments();
         if (arguments != null) {
-            isPlayer1X = arguments.getBoolean("isPlayer1X", true);
+            isPlayer1X = arguments.getBoolean(getString(R.string.isplayer1x), true);
         }
 
-        timerTextView = view.findViewById(R.id.timerTextView);
-        turnTextView = view.findViewById(R.id.turnTextView);
-        winnerLayout = view.findViewById(R.id.winner_layout);
-        winnerText = view.findViewById(R.id.winnerText);
-        View playAgainButton = view.findViewById(R.id.play_again_button);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         initializeBoard();
-        setupCells(view);
+        setupCells();
         updateTurnText();
         startTimer();
 
-        playAgainButton.setOnClickListener(v -> resetGame());
-
-        return view;
+        binding.playAgainButton.setOnClickListener(v -> resetGame());
     }
 
     private void initializeBoard() {
@@ -62,16 +56,16 @@ public class GameFragment extends Fragment {
         }
     }
 
-    private void setupCells(View view) {
-        cells[0][0] = view.findViewById(R.id.cell00);
-        cells[0][1] = view.findViewById(R.id.cell01);
-        cells[0][2] = view.findViewById(R.id.cell02);
-        cells[1][0] = view.findViewById(R.id.cell10);
-        cells[1][1] = view.findViewById(R.id.cell11);
-        cells[1][2] = view.findViewById(R.id.cell12);
-        cells[2][0] = view.findViewById(R.id.cell20);
-        cells[2][1] = view.findViewById(R.id.cell21);
-        cells[2][2] = view.findViewById(R.id.cell22);
+    private void setupCells() {
+        cells[0][0] = binding.cell00;
+        cells[0][1] = binding.cell01;
+        cells[0][2] = binding.cell02;
+        cells[1][0] = binding.cell10;
+        cells[1][1] = binding.cell11;
+        cells[1][2] = binding.cell12;
+        cells[2][0] = binding.cell20;
+        cells[2][1] = binding.cell21;
+        cells[2][2] = binding.cell22;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -112,20 +106,15 @@ public class GameFragment extends Fragment {
         if (boardState[0][0] != 0 && boardState[0][0] == boardState[1][1] && boardState[1][1] == boardState[2][2]) {
             return true;
         }
-        if (boardState[0][2] != 0 && boardState[0][2] == boardState[1][1] && boardState[1][1] == boardState[2][0]) {
-            return true;
-        }
-        return false;
+        return boardState[0][2] != 0 && boardState[0][2] == boardState[1][1] && boardState[1][1] == boardState[2][0];
     }
 
     private void endGame(String message) {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
-        if (winnerLayout != null) {
-            winnerLayout.setVisibility(View.VISIBLE);
-            winnerText.setText(message);
-        }
+        binding.winnerLayout.setVisibility(View.VISIBLE);
+        binding.winnerText.setText(message);
         setBoardEnabled(false);
     }
 
@@ -139,9 +128,7 @@ public class GameFragment extends Fragment {
                 cells[i][j].setImageResource(0);
             }
         }
-        if (winnerLayout != null) {
-            winnerLayout.setVisibility(View.GONE);
-        }
+        binding.winnerLayout.setVisibility(View.GONE);
         setBoardEnabled(true);
         startTimer();
     }
@@ -155,9 +142,7 @@ public class GameFragment extends Fragment {
     }
 
     private void updateTurnText() {
-        if (turnTextView != null) {
-            turnTextView.setText(isPlayer1Turn ? "Player 1's Turn" : "Player 2's Turn");
-        }
+        binding.turnTextView.setText(isPlayer1Turn ? "Player 1's Turn" : "Player 2's Turn");
     }
 
     private void startTimer() {
@@ -169,9 +154,7 @@ public class GameFragment extends Fragment {
                 long minutes = millisUntilFinished / 60000;
                 long seconds = (millisUntilFinished % 60000) / 1000;
                 String timeFormatted = String.format("%02d:%02d", minutes, seconds);
-                if (timerTextView != null) {
-                    timerTextView.setText(timeFormatted);
-                }
+                binding.timerTextView.setText(timeFormatted);
             }
 
             public void onFinish() {

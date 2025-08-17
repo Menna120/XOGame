@@ -11,7 +11,7 @@
         android:pathData="M53,53m-43,0a43,43 0,1 1,86 0a43,43 0,1 1,-86 0"
         android:strokeWidth="19.1321"
         android:strokeAlpha="0.8"
-        android:strokeColor="@color/light_green"
+        android:strokeColor="@color/dark_green"
         android:strokeLineCap="round"
         android:strokeLineJoin="bevel" />
 

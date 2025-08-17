@@ -9,13 +9,18 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.xo_game.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragment_container_view), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(boolean isPlayer1X) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean("isPlayer1X", isPlayer1X);
+        bundle.putBoolean(getString(R.string.isplayer1x), isPlayer1X);
 
         GameFragment gameFragment = new GameFragment();
         gameFragment.setArguments(bundle);

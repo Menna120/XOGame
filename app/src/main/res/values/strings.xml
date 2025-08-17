@@ -7,4 +7,5 @@
     <string name="pick_who_goes_first">Pick who goes first?</string>
     <string name="player_o">Player O</string>
     <string name="player_x">Player X</string>
+    <string name="isplayer1x">isPlayer1X</string>
 </resources>
