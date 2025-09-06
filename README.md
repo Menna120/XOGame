@@ -23,7 +23,7 @@ Here are some key moments from the game:
     <img src="https://github.com/Menna120/XOGame/blob/master/screenshots/time_up.png" width="250" alt="Time's Up" style="margin: 10px;">
 </div>
 
-## Features (Optional - Please Update)
+## Features
 
 * Two-player mode.
 
